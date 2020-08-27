@@ -127,7 +127,7 @@ Il y a plusieurs façon de faire tourner l'application, les méthodes les plus s
     import AddNote from '../screens/AddNote';
 
     const StackNavigator = createStackNavigator(
-      { 
+      {
         // Ajouter autant de pages qu'on souhaite
         ViewNotes: {
           screen: ViewNotes
@@ -151,17 +151,17 @@ Il y a plusieurs façon de faire tourner l'application, les méthodes les plus s
   Coder le fichier de base pour le fonctionnement de l'app :
 
   ```js
-    import { StatusBar } from 'expo-status-bar'; // Étendre le header de l'app vers le haut du smartphone
+    import StatusBar from 'expo-status-bar'; // Étendre le header de l'app vers le haut du smartphone
     import React from 'react';
-    import { Provider as PaperProvider } from 'react-native-paper';
-    import AppNavigator from './src/navigation';
+    import Provider from 'react-native-paper';
+    import Navigation from './src/navigation';
 
     export default function App() {
       return (
-        <PaperProvider>
-          <AppNavigator />
+        <Provider>
+          <Navigation />
           <StatusBar style="auto" />
-        </PaperProvider>
+        </Provider>
       );
     }
   ```
@@ -184,7 +184,7 @@ Il y a plusieurs façon de faire tourner l'application, les méthodes les plus s
         </Appbar.Header>
       )
     }
-    
+
     // Le css ici
     const styles = StyleSheet.create({
       headerContainer: {
@@ -196,7 +196,8 @@ Il y a plusieurs façon de faire tourner l'application, les méthodes les plus s
         alignItems: 'center'
       },
       title: {
-        color: '#gray'
+        color: 'white',
+        fontWeight: 'bold'
       }
     })
 
@@ -319,7 +320,6 @@ Il y a plusieurs façon de faire tourner l'application, les méthodes les plus s
             <TextInput
               label='Title Here'
               value={noteTitle}
-              mode='outlined'
               onChangeText={setNoteTitle}
               style={styles.title}
             />
@@ -327,7 +327,6 @@ Il y a plusieurs façon de faire tourner l'application, les méthodes les plus s
               label='Description Here'
               value={noteValue}
               onChangeText={setNoteValue}
-              mode='flat'
               multiline={true}
               style={styles.text}
               scrollEnabled={true}
