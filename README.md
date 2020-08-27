@@ -128,7 +128,6 @@ Il y a plusieurs façon de faire tourner l'application, les méthodes les plus s
 
     const StackNavigator = createStackNavigator(
       {
-        // Ajouter autant de pages qu'on souhaite
         ViewNotes: {
           screen: ViewNotes
         },
@@ -137,9 +136,9 @@ Il y a plusieurs façon de faire tourner l'application, les méthodes les plus s
         }
       },
       {
-        initialRouteName: 'ViewNotes', // La page qui s'ouvre quand l'app est lancé
-        headerMode: 'none', // 3 choix : float, screen et none
-        mode: 'modal' // 2 choix : card et modal
+        initialRouteName: 'ViewNotes',
+        headerMode: 'none',
+        mode: 'modal'
       }
     )
 
@@ -151,17 +150,17 @@ Il y a plusieurs façon de faire tourner l'application, les méthodes les plus s
   Coder le fichier de base pour le fonctionnement de l'app :
 
   ```js
-    import StatusBar from 'expo-status-bar'; // Étendre le header de l'app vers le haut du smartphone
+    import { StatusBar } from 'expo-status-bar';
     import React from 'react';
-    import Provider from 'react-native-paper';
-    import Navigation from './src/navigation';
+    import { Provider as PaperProvider } from 'react-native-paper';
+    import AppNavigator from './src/navigation';
 
     export default function App() {
       return (
-        <Provider>
-          <Navigation />
+        <PaperProvider>
+          <AppNavigator />
           <StatusBar style="auto" />
-        </Provider>
+        </PaperProvider>
       );
     }
   ```
@@ -185,7 +184,6 @@ Il y a plusieurs façon de faire tourner l'application, les méthodes les plus s
       )
     }
 
-    // Le css ici
     const styles = StyleSheet.create({
       headerContainer: {
         backgroundColor: '#9e42f5'
@@ -249,6 +247,7 @@ Il y a plusieurs façon de faire tourner l'application, les méthodes les plus s
             small
             icon='plus'
             label='Add new note'
+            // add a second parameter object
             onPress={() =>
               navigation.navigate('AddNote', {
                 addNote
@@ -295,7 +294,7 @@ Il y a plusieurs façon de faire tourner l'application, les méthodes les plus s
   ```js
     import React, { useState } from 'react'
     import { StyleSheet, View } from 'react-native'
-    import { IconButton, TextInput, FAB, Colors } from 'react-native-paper'
+    import { IconButton, TextInput, FAB, Colors} from 'react-native-paper'
     import Header from '../components/Header'
 
     function AddNote({ navigation }) {
@@ -364,7 +363,8 @@ Il y a plusieurs façon de faire tourner l'application, les méthodes les plus s
         position: 'absolute',
         margin: 20,
         right: 0,
-        bottom: 0
+        bottom: 0,
+        backgroundColor: '#9e42f5'
       }
     })
 
